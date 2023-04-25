@@ -5,7 +5,7 @@ const Header = ({ setIsShowForm }) => {
     setIsShowForm((isShowForm) => !isShowForm);
   };
   return (
-    <header className="flex justify-between p-12 border-[1px]">
+    <header className="flex justify-between p-12 border-[1px] bg-white">
       <h1 className="text-2xl font-semibold">Usuario</h1>
 
       <button

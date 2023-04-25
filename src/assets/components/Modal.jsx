@@ -1,9 +1,28 @@
 import React from "react";
 
-const Modal = ({ isShowForm, setIsShowForm, register, handleSubmit,Submit}) => {
+const Modal = ({ isShowForm,
+   setIsShowForm, 
+   register, 
+   handleSubmit,
+   Submit,
+   setsex
+   ,sex
+  }) => {
   const handleClickClosedModal = () => {
     setIsShowForm((isShowForm) => !isShowForm);
   };
+
+const handleSex=()=>{
+
+  setsex((sex)=>!sex)
+
+}
+
+function randomNum() {
+  return Math.floor(Math.random() * 99) + 1;
+}
+
+const num=randomNum()
 
   return (
     <section
@@ -82,8 +101,8 @@ const Modal = ({ isShowForm, setIsShowForm, register, handleSubmit,Submit}) => {
             URL imagen
           </label>
           <input
-          value="https://randomuser.me/api/portraits/women/75.jpg"
-            className="border-[1px] rounded-sm bg-gray-100 p-1"
+          value={`https://randomuser.me/api/portraits/${sex ? "men":"women" }/${num}.jpg`}
+            className="border-[1px] rounded-sm bg-gray-100 p"
             id="image_url"
             type="text"
             {...register("image_url")}
@@ -93,6 +112,8 @@ const Modal = ({ isShowForm, setIsShowForm, register, handleSubmit,Submit}) => {
           onClick={handleClickClosedModal}
           className="absolute text-2xl p-1 cursor-pointer hover:text-red-500 right-0 bx bx-x"
         ></i>
+
+        <button onClick={handleSex}>Click si {sex ? <i class='bx bx-female-sign' > es Mujer</i>:<i class='bx bx-male-sign' > es Hombre</i>}</button>
 
         <button className="w-full bg-purple-500 p-2 text-white font-semibold bg-[#555A88] hover:bg-[#555A88]/90 transition-colors text-sm">
           Agregar Nuevo Usuario

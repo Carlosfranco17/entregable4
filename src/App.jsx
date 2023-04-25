@@ -11,9 +11,10 @@ const BASE_URL = "https://users-crud.academlo.tech";
 function App() {
   const [users, setUsers] = useState([]);
 
-  const [isShowForm, setIsShowForm] = useState(false);
+  const [isShowForm, setIsShowForm] = useState(!false);
 
   const { register, handleSubmit,reset } = useForm();
+  const [sex, setsex] = useState()
 
   const Submit = (data) => {
     console.log(data);
@@ -39,6 +40,15 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
+
+  const deleteUser=(id)=>{
+    const URL= BASE_URL + `/users/${id}/`;
+
+    axios.delete(URL)
+    .then(()=>getAllUsers())
+    .catch((err)=>console.log(err))
+  }
+
   const getAllUsers = () => {
     const URL = BASE_URL + "/users/";
 
@@ -53,8 +63,10 @@ function App() {
   }, []);
 
   return (
-    <main className="font-sans ">
+    <main className="font-sans bg-gray-200 min-h-screen">
       <Modal
+      sex={sex}
+      setsex={setsex}
         Submit={Submit}
         handleSubmit={handleSubmit}
         register={register}
@@ -64,7 +76,7 @@ function App() {
 
       <Header setIsShowForm={setIsShowForm} />
 
-       <UserList users={users} />
+       <UserList deleteUser={deleteUser} users={users} />
     </main>
   );
 }
