@@ -1,6 +1,6 @@
 import React from 'react'
 
-const UserCard = ({user,deleteUser}) => {
+const UserCard = ({user,deleteUser,handleClickEdit}) => {
   return (
     <article className=' mt-8 bg-white '>
       
@@ -23,7 +23,9 @@ const UserCard = ({user,deleteUser}) => {
     <button onClick={()=>deleteUser(user.id)} className='mx-2 bg-red-500 px-1 mb-2 w-8'>
 <i className=' text-white bx bxs-trash'></i>
     </button>
-    <button  className='px-1 border-[2px] border-gray-400 mb-2 mr-2'>
+
+    
+    <button onClick={()=>handleClickEdit(user)} className='px-1 border-[2px] border-gray-400 mb-2 mr-2'>
     <i className='  text-gray-400 bx bxs-pencil'></i>
     </button>
 </div>

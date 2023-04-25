@@ -5,11 +5,25 @@ const Modal = ({ isShowForm,
    register, 
    handleSubmit,
    Submit,
-   setsex
-   ,sex
+   setsex,
+   sex,
+   reset,
+   setIsUserIdEdit,
+   isUserIdEdit
+
   }) => {
   const handleClickClosedModal = () => {
     setIsShowForm((isShowForm) => !isShowForm);
+    reset({
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      birthday: "",
+      image_url: "",
+    });
+
+    setIsUserIdEdit(!isUserIdEdit)
   };
 
 const handleSex=()=>{
@@ -34,7 +48,7 @@ const num=randomNum()
         onSubmit={handleSubmit(Submit)}
         className="bg-white p-4 grid gap-4 w-[300px] relative"
       >
-        <h3 className="text-2xl font-semibold">Nuevo usuario</h3>
+        <h3 className="text-2xl font-semibold">{isUserIdEdit?"Editar Usuario":"Nuevo usuario"}</h3>
 
         <div className="grid  gap-1">
           <label className="text-xs font-semibold" htmlFor="first_name">
@@ -113,10 +127,10 @@ const num=randomNum()
           className="absolute text-2xl p-1 cursor-pointer hover:text-red-500 right-0 bx bx-x"
         ></i>
 
-        <button onClick={handleSex}>Click si {sex ? <i class='bx bx-female-sign' > es Mujer</i>:<i class='bx bx-male-sign' > es Hombre</i>}</button>
+        <button onClick={handleSex}><span className="font-bold text-gray-500" >Click si</span> {sex ? <i className=' text-pink-500 font-bold bx bx-female-sign' >es Mujer</i>:<i className='text-blue-500 font-bold bx bx-male-sign' >es Hombre</i>}</button>
 
-        <button className="w-full bg-purple-500 p-2 text-white font-semibold bg-[#555A88] hover:bg-[#555A88]/90 transition-colors text-sm">
-          Agregar Nuevo Usuario
+        <button className="w-full bg-purple-500 p-2 text-white font-semibold bg-[#555A88] mt-4 hover:bg-[#555A88]/90 transition-colors text-sm">
+          {isUserIdEdit?"Guardar cambios":"Agregar Nuevo Usuario"}
         </button>
       </form>
     </section>
